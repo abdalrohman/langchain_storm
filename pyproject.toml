@@ -1,0 +1,97 @@
+[tool.poetry]
+name = "sotrm"
+version = "0.1.0"
+description = "research assistant designed by Shao, et. al that extends the idea of “outline-driven RAG” for richer article generation."
+authors = ["M.Abdulrahman Alnaseer <20760062+abdalrohman@users.noreply.github.com>"]
+readme = "README.md"
+repository = "https://github.com/abdalrohman/langchain_storm.git"
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">3.9.7,<4.0"
+streamlit = "^1.32.2"
+langchain-community = "^0.0.28"
+langchain = "^0.1.12"
+langchain-core = "^0.1.32"
+langgraph = "^0.0.28"
+wikipedia = "^1.4.0"
+langchain-fireworks = "^0.1.1"
+duckduckgo-search = "^5.1.0"
+
+[tool.poetry.group.codespell]
+optional = true
+
+[tool.poetry.group.codespell.dependencies]
+codespell = "^2.2.0"
+
+[tool.poetry.group.lint]
+optional = true
+
+[tool.poetry.group.lint.dependencies]
+ruff = "^0.1.5"
+
+[tool.poetry.group.typing.dependencies]
+mypy = "^0.991"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0.0"
+setuptools = "^67.6.1"
+grandalf = "^0.8"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.0"
+pytest-mock = "^3.10.0"
+pytest-watcher = "^0.3.4"
+pytest-asyncio = "^0.21.1"
+freezegun = "^1.2.2"
+syrupy = "^4.0.2"
+grandalf = "^0.8"
+pytest-profiling = "^1.7.0"
+responses = "^0.25.0"
+
+[tool.ruff.lint]
+select = [
+  "E",    # pycodestyle
+  "F",    # pyflakes
+  "I",    # isort
+  "W",    # Warnings
+  "T201", # print
+]
+
+[tool.mypy]
+disallow_untyped_defs = "True"
+
+[tool.coverage.run]
+omit = [
+    "tests/*",
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+# --strict-markers will raise errors on unknown marks.
+# https://docs.pytest.org/en/7.1.x/how-to/mark.html#raising-errors-on-unknown-marks
+#
+# https://docs.pytest.org/en/7.1.x/reference/reference.html
+# --strict-config       any warnings encountered while parsing the `pytest`
+#                       section of the configuration file raise errors.
+#
+# https://github.com/tophat/syrupy
+# --snapshot-warn-unused    Prints a warning on unused snapshots rather than fail the test suite.
+addopts = "--snapshot-warn-unused --strict-markers --strict-config --durations=5"
+# Registering custom markers.
+# https://docs.pytest.org/en/7.1.x/example/markers.html#registering-markers
+markers = [
+  "requires: mark tests as requiring a specific library",
+  "asyncio: mark tests as requiring asyncio",
+  "compile: mark placeholder test used to compile integration tests without running them",
+]
+asyncio_mode = "auto"
