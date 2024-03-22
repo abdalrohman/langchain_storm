@@ -177,3 +177,6 @@ _dist
 docs/docs/templates
 
 prof
+generated_articles
+logs
+code_backup
